@@ -2,7 +2,7 @@ var path = require('path');
 var fs = require('fs');
 
 /**
- * ensure directory exists, create it recursively if not.
+ * ensure a directory exists, create it recursively if not.
  * 
  * @param dir the directory you want to ensure it exists
  * @param mode refer to fs.mkdir()

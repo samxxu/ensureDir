@@ -1,6 +1,6 @@
 {
     "name" : "ensureDir",
-    "description" : "Ensure directory exists, create it recursively if not",
+    "description" : "Ensure a directory exists, create it recursively if not",
     "version" : "1.0.0",
     "author" : "Sam X. Xu <samxxu@gmail.com>",
     "main" : "./index",
