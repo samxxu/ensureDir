@@ -30,3 +30,11 @@ ensureDir(relativeDir, 0755, function(err) {
         removeDir(relativeDir, 4);
     });
 });
+
+var existingDirectory = __dirname;
+ensureDir(existingDirectory, function(err) {
+  assert.ifError(err);
+  existsFunction(existingDirectory, function(exists) {
+    assert.ok(exists, '#ensureDir(existingDir) should ensure the dir exists');
+  });
+});
