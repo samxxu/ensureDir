@@ -20,13 +20,15 @@ module.exports = function ensureDir(dir, mode, callback) {
 }
 
 function _ensureDir(dir, mode, callback) {
-  path.exists(dir, function(exists) {
+  var existsFunction = fs.exists || path.exists;
+
+  existsFunction(dir, function(exists) {
     if (exists) return callback(null);
 
     var current = path.resolve(dir);
     var parent = path.dirname(current);
 
-    ensureDir(parent, mode, function(err) {
+    _ensureDir(parent, mode, function(err) {
       if (err)return callback(err);
 
       fs.mkdir(current, mode, function(err) {
