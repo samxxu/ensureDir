@@ -11,9 +11,10 @@ var fs = require('fs');
 module.exports = function ensureDir(dir, mode, callback) {
   if (mode && typeof(mode) === 'function') {
     callback = mode;
-    mode = 0777 & (~process.umask());
+    mode = null;
   }
 
+  mode = mode || 0777 & (~process.umask());
   callback = callback || function (){};
 
   _ensureDir(dir, mode, callback);
