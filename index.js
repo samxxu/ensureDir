@@ -9,27 +9,33 @@ var fs = require('fs');
  * @param callback
  */
 module.exports = function ensureDir(dir, mode, callback) {
+  if (mode && typeof(mode) === 'function') {
+    callback = mode;
+    mode = null;
+  }
 
-    path.exists(dir, function(exists) {
-        if (exists) return callback(null);
+  mode = mode || 0777 & (~process.umask());
+  callback = callback || function (){};
 
-        if (typeof mode === 'function') {
-            callback = mode;
-            mode = 0777 & (~process.umask());
-        }
-
-        var current = path.resolve(dir);
-        var parent = path.dirname(current);
-
-        ensureDir(parent, mode, function(err) {
-            if (err)return callback(err);
-
-            fs.mkdir(current, mode, function(err) {
-                if (err)return callback(err);
-                console.log('folder[' + current + '] created');
-                callback();
-            });
-        });
-    });
+  _ensureDir(dir, mode, callback);
 }
 
+function _ensureDir(dir, mode, callback) {
+  var existsFunction = fs.exists || path.exists;
+
+  existsFunction(dir, function(exists) {
+    if (exists) return callback(null);
+
+    var current = path.resolve(dir);
+    var parent = path.dirname(current);
+
+    _ensureDir(parent, mode, function(err) {
+      if (err)return callback(err);
+
+      fs.mkdir(current, mode, function(err) {
+        if (err)return callback(err);
+        callback();
+      });
+    });
+  });
+}
