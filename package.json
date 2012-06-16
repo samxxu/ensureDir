@@ -1,25 +1,25 @@
 {
-    "name" : "ensureDir",
-    "description" : "Ensure a directory exists, create it recursively if not",
-    "version" : "1.0.0",
-    "author" : "Sam X. Xu <samxxu@gmail.com>",
-    "main" : "./index",
-    "keywords" : [
+    "name":"ensureDir",
+    "description":"Ensure a directory exists, create it recursively if not",
+    "version":"1.0.2",
+    "author":"Sam X. Xu <samxxu@gmail.com>",
+    "main":"./index",
+    "keywords":[
         "ensureDir",
         "mkdir -p",
         "directory"
     ],
-    "repository" : {
-        "type" : "git",
-        "url" : "https://samxxu@github.com/samxxu/ensureDir.git"
+    "repository":{
+        "type":"git",
+        "url":"https://samxxu@github.com/samxxu/ensureDir.git"
     },
-    "licenses": [
+    "licenses":[
         {
-            "type": "MIT",
-            "url": "http://www.opensource.org/licenses/mit-license.php"
+            "type":"MIT",
+            "url":"http://www.opensource.org/licenses/mit-license.php"
         }
     ],
-    "engines": {
-        "node": "*"
+    "engines":{
+        "node":"*"
     }
 }

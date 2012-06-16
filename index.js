@@ -9,35 +9,35 @@ var fs = require('fs');
  * @param callback
  */
 module.exports = function ensureDir(dir, mode, callback) {
-  if (mode && typeof(mode) === 'function') {
-    callback = mode;
-    mode = null;
-  }
+    if (mode && typeof(mode) === 'function') {
+        callback = mode;
+        mode = null;
+    }
 
-  mode = mode || 0777 & (~process.umask());
-  ;
-  callback = callback || function () {
-  };
+    mode = mode || 0777 & (~process.umask());
 
-  _ensureDir(dir, mode, callback);
+    callback = callback || function () {
+    };
+
+    _ensureDir(dir, mode, callback);
 }
 
 function _ensureDir(dir, mode, callback) {
-  var existsFunction = fs.exists || path.exists;
+    var existsFunction = fs.exists || path.exists;
 
-  existsFunction(dir, function (exists) {
-    if (exists) return callback(null);
+    existsFunction(dir, function (exists) {
+        if (exists) return callback(null);
 
-    var current = path.resolve(dir);
-    var parent = path.dirname(current);
+        var current = path.resolve(dir);
+        var parent = path.dirname(current);
 
-    _ensureDir(parent, mode, function (err) {
-      if (err)return callback(err);
+        _ensureDir(parent, mode, function (err) {
+            if (err)return callback(err);
 
-      fs.mkdir(current, mode, function (err) {
-        if (err)return callback(err);
-        callback();
-      });
+            fs.mkdir(current, mode, function (err) {
+                if (err)return callback(err);
+                callback();
+            });
+        });
     });
-  });
 }
