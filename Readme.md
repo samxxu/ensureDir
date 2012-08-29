@@ -1,4 +1,4 @@
-A utility for [node](http://nodejs.org), ensure a directory exists, create it recursively if not.
+A utility for [node](http://nodejs.org), ensures the directory exists, creating it recursively if not.
 
 ## Example
 
